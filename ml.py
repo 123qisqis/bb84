@@ -5,17 +5,13 @@ from bb84_protocol import BB84Protocol
 
 
 class MLDetector:
-    """Machine learning based eavesdropping detector"""
-
     def __init__(self):
         self.model = None
         self.is_trained = False
 
     def generate_training_data(self, n_sessions=50, n_qubits=50):
-        """Generate training dataset from BB84 sessions"""
         data = []
 
-        # Generate sessions without eavesdropper
         for _ in range(n_sessions):
             bb84 = BB84Protocol(n_qubits)
             for _ in range(n_qubits):
@@ -25,7 +21,6 @@ class MLDetector:
                 {"error_rate": qber, "sift_ratio": key_len / n_qubits, "eve": 0}
             )
 
-        # Generate sessions with eavesdropper
         for _ in range(n_sessions):
             bb84 = BB84Protocol(n_qubits)
             intercept_rate = np.random.uniform(0.3, 1.0)
@@ -41,7 +36,6 @@ class MLDetector:
         return pd.DataFrame(data)
 
     def train(self, n_sessions=50, n_qubits=50):
-        """Train the ML model"""
         df = self.generate_training_data(n_sessions, n_qubits)
 
         X = df[["error_rate", "sift_ratio"]]
@@ -54,7 +48,6 @@ class MLDetector:
         return self.model
 
     def predict(self, qber, sift_ratio):
-        """Predict if eavesdropper is present"""
         if not self.is_trained:
             raise ValueError("Model not trained. Call train() first.")
 
@@ -65,7 +58,6 @@ class MLDetector:
         return prediction, probability
 
     def evaluate_scenarios(self, scenarios, n_qubits=50):
-        """Evaluate multiple attack scenarios"""
         if not self.is_trained:
             raise ValueError("Model not trained. Call train() first.")
 
