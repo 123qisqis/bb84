@@ -17,3 +17,9 @@
 * app using streamline
 * visual run of bb84 protocol
 * results for the n scenarios
+
+## How to run:
+* clone or fork the repository
+* create the virtual environment using the requirements.txt
+* Navigate to the project directory
+* Run the command: '''streamlit app_main.py'''
