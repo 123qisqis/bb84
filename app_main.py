@@ -419,9 +419,9 @@ elif mode == "ML Detection":
     st.header("Machine Learning Attack Detection")
 
     if st.button("Train & Test ML Detector", type="primary"):
-        with st.spinner("Training ML model on 100 BB84 sessions..."):
+        with st.spinner("Training ML model on 40 BB84 sessions..."):
             detector = MLDetector()
-            detector.train(n_sessions=50, n_qubits=50)
+            detector.train(n_sessions=20, n_qubits=40)
             st.session_state.ml_detector = detector
 
         st.success("Model trained")
@@ -434,7 +434,7 @@ elif mode == "ML Detection":
             ("Heavy Attack (80%)", EveConfig(active=True, intercept_rate=0.8)),
         ]
 
-        results_df = detector.evaluate_scenarios(scenarios, n_qubits=50)
+        results_df = detector.evaluate_scenarios(scenarios, n_qubits=40)
         st.dataframe(results_df, use_container_width=True, hide_index=True)
 
         st.markdown("### ML Confidence Levels")
@@ -535,8 +535,8 @@ elif mode == "Analysis":
     col1, col2 = st.columns(2)
 
     with col1:
-        n_sessions = st.slider("Number of Sessions", 20, 100, 50)
-        n_qubits_analysis = st.slider("Qubits per Session", 30, 100, 50)
+        n_sessions = st.slider("Number of Sessions", 10, 100, 20)
+        n_qubits_analysis = st.slider("Qubits per Session", 20, 100, 40)
 
     with col2:
         noise_level = st.slider("Channel Noise", 0.0, 0.1, 0.02, 0.01)
