@@ -3,11 +3,9 @@ import numpy as np
 
 
 class BB84Visualizer:
-    """Visualization tools for BB84 protocol analysis"""
 
     @staticmethod
     def plot_qber_gauge(qber, threshold, title="Current QBER"):
-        """Create gauge chart for QBER"""
         fig, ax = plt.subplots(figsize=(6, 3))
 
         values = [threshold * 0.5, threshold * 0.5, 0.3 - threshold]
@@ -34,7 +32,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_qber_evolution(qber_history, threshold):
-        """Plot QBER over time"""
         fig, ax = plt.subplots(figsize=(8, 3))
         rounds = list(range(1, len(qber_history) + 1))
 
@@ -59,7 +56,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_key_length_growth(key_len_history):
-        """Plot key length growth over time"""
         fig, ax = plt.subplots(figsize=(8, 3))
         rounds = list(range(1, len(key_len_history) + 1))
 
@@ -73,7 +69,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_game_statistics(qber_history, key_len_history, threshold):
-        """Create combined statistics plot"""
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
 
         rounds = list(range(1, len(qber_history) + 1))
@@ -104,7 +99,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_qber_distribution(df, threshold=0.11):
-        """Plot QBER distribution for scenarios with/without Eve"""
         fig, ax = plt.subplots(figsize=(6, 4))
 
         no_eve = df[df["Eve Present"] == "No"]["QBER"]
@@ -124,7 +118,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_feature_space(df):
-        """Plot 2D feature space (QBER vs Sift Ratio)"""
         fig, ax = plt.subplots(figsize=(6, 4))
 
         no_eve_df = df[df["Eve Present"] == "No"]
@@ -156,7 +149,6 @@ class BB84Visualizer:
 
     @staticmethod
     def plot_ml_confidence(results_df):
-        """Plot ML confidence levels"""
         fig, ax = plt.subplots(figsize=(10, 4))
 
         scenarios = results_df["Scenario"].tolist()
