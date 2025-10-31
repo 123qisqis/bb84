@@ -23,3 +23,6 @@
 * create the virtual environment using the requirements.txt
 * Navigate to the project directory
 * Run the command: '''streamlit app_main.py'''
+
+
+Presentation link: https://view.genially.com/6904d8d738afef9b6c88499e/guide-project
